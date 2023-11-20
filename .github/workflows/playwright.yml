@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: 16
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright
@@ -31,22 +31,36 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      - name: Generate allure report
-        uses: simple-elf/allure-report-action@master
-        if: always()
-        id: allure-report
-        with:
-          allure_results: allure-results
-          gh_pages: gh-pages
-          allure_report: allure-report
-          allure_history: allure-history
+#      - name: Generate allure report
+#        uses: simple-elf/allure-report-action@master
+#        if: always()
+#        id: allure-report
+#        with:
+#          allure_results: allure-results
+#          gh_pages: gh-pages
+#          allure_report: allure-report
+#          allure_history: allure-history
 
-      - name: Upload report
-        uses: actions/upload-artifact@v3
+      - name: Generate Allure Report
+        if: always()
+        run: npm run allure-report
+      - uses: actions/upload-artifact@v3
+        if: always()
         with:
-          name: report
-          if-no-files-found: error
-          path: ./jest-html-report
+          name: playwright-test-results
+          path: test-results/
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: allure-test-results
+          path: allure-report/
+
+#      - name: Upload report
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: report
+#          if-no-files-found: error
+#          path: ./jest-html-report
 
 #      - name: send telegram message on push
 #        uses: appleboy/telegram-action@master
