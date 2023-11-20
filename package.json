@@ -1,0 +1,30 @@
+{
+  "name": "OTUS_OZON_Project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:dev": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "codegen": "playwright codegen"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NatalieBlade/OTUS_OZON_Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NatalieBlade/OTUS_OZON_Project/issues"
+  },
+  "homepage": "https://github.com/NatalieBlade/OTUS_OZON_Project#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.9.2"
+  },
+  "dependencies": {
+    "typescript": "^5.2.2"
+  }
+}
